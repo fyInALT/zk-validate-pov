@@ -6,5 +6,12 @@ edition = "2021"
 [workspace]
 
 [dependencies]
-# If you want to try (experimental) std support, add `features = [ "std" ]` to risc0-zkvm
+scale-codec = { package = "parity-scale-codec", version = "3.6.3", default-features = false }
+
+# risc0
 risc0-zkvm = { version = "0.16.1", default-features = false }
+
+# Beacon (Rollup)
+altbeacon-rollup-executor = { git = "https://github.com/alt-research/alt-beacon", branch = "test/executor-pov", default-features = false }
+altbeacon-rollup-externalities = { git = "https://github.com/alt-research/alt-beacon", branch = "test/executor-pov", default-features = false }
+altbeacon-rollup-io = { git = "https://github.com/alt-research/alt-beacon", branch = "test/executor-pov", default-features = false, features = ["disable_panic_handler", "disable_oom", "disable_allocator"] }
