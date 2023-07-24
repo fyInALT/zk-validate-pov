@@ -20,7 +20,7 @@ pub const BEACON_VALIDATION_METHOD: &str = "beacon_validate_block";
 pub fn validate_block(code: &[u8], encoded_params: &[u8]) -> Result<Vec<u8>, Error> {
     let blob = RuntimeBlob::uncompress_if_needed(code).map_err(|e| InstantiateError::Other(e))?;
 
-    let mut executor = WasmExecutor::<HostFunctions>::new(blob, Some(512), true)?;
+    let mut executor = WasmExecutor::<HostFunctions>::new(blob, Some(8), true)?;
     let mut ext = ValidationExternalities::new();
 
     match executor.call(&mut ext, BEACON_VALIDATION_METHOD, encoded_params) {

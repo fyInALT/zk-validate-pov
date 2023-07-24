@@ -15,3 +15,8 @@ risc0-zkvm = { version = "0.16.1", default-features = false }
 altbeacon-rollup-executor = { git = "https://github.com/alt-research/alt-beacon", branch = "test/executor-pov", default-features = false }
 altbeacon-rollup-externalities = { git = "https://github.com/alt-research/alt-beacon", branch = "test/executor-pov", default-features = false }
 altbeacon-rollup-io = { git = "https://github.com/alt-research/alt-beacon", branch = "test/executor-pov", default-features = false, features = ["disable_panic_handler", "disable_oom", "disable_allocator"] }
+
+[profile.release]
+# Empirically observed to result in the best performance for this binary (in particular, better than
+# "fat"). It's often a good idea to experiment with different optimization levels and options.
+lto = "thin"
